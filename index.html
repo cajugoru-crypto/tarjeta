@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Invitación de Cumpleaños</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
+      animation: fadeIn 2s;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      color: #ff4081;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🎉 Estás Invitado 🎉</h1>
+    <p>Ven a celebrar mi cumpleaños 🥳</p>
+    <p>📅 15 de marzo</p>
+    <p>⏰ 7:00 p.m.</p>
+    <p>📍 Mi casa</p>
+    <h3>¡No faltes!</h3>
+    <p>— Oscar</p>
+  </div>
+</body>
+</html>
