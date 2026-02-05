@@ -19,7 +19,6 @@ body{
   font-family:'Fredoka',sans-serif;
 }
 
-/* confeti */
 .confeti{
   position:absolute;
   top:-20px;
@@ -32,7 +31,6 @@ body{
   100%{transform:translateY(110vh) rotate(360deg)}
 }
 
-/* flotantes */
 .float{
   position:absolute;
   font-size:36px;
@@ -51,7 +49,6 @@ body{
   100%{transform:translateY(0)}
 }
 
-/* ESCENA 1 */
 #escena1{
   font-family:'Luckiest Guy',cursive;
   font-size:24px;
@@ -71,7 +68,6 @@ body{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* ESCENA 2 */
 #escena2{
   display:none;
   animation:slideIn 1s ease forwards;
@@ -109,7 +105,6 @@ button{
 }
 button:hover{transform:scale(1.05)}
 
-/* ESCENA 3 */
 #escena3{
   display:none;
   animation:slideIn 1s ease forwards;
@@ -132,8 +127,8 @@ button:hover{transform:scale(1.05)}
 <div id="escena1"></div>
 
 <div id="escena2">
-    <h4>Lugar : Carrera 14D # 76B 52 Sur</h4>
-    <h4>Fecha 14 De Febrero</h4>
+  <h4>Lugar : Carrera 14D # 76B 52 Sur</h4>
+  <h4>Fecha 14 De Febrero</h4>
   <div class="titulo">Confirma tu asistencia 💖</div>
   <input type="text" id="nombre" placeholder="Escribe tu nombre">
   <br>
@@ -147,7 +142,7 @@ button:hover{transform:scale(1.05)}
 <script>
 const texto = [
 "😇 Hace un año llegaste para iluminar nuestras vidas.",
-"¡Ven a celebrar el primer añito de nuestra princesa hermosa Emely Antonella!",
+"¡Ven a celebrar el primer añito de nuestra princesa hermosa Emily Antonella!",
 "",
 "💖 365 días de amor, risas y mimos.",
 "¡Nuestra pequeña cumple 1 año!",
@@ -172,7 +167,6 @@ setTimeout(()=>{
   document.getElementById("escena2").style.display="block";
 }, texto.length*800+5000);
 
-/* confeti */
 const emojis=["💖","🩵","🌺","🌈","💖","🌊","🐬","✨","🎸"];
 for(let i=0;i<35;i++){
   let c=document.createElement("div");
@@ -185,23 +179,22 @@ for(let i=0;i<35;i++){
 }
 
 function enviar(){
-  const nombre = document.getElementById("nombre").value.trim();
+  const nombre=document.getElementById("nombre").value.trim();
+  if(!nombre)return;
 
-  if(!nombre){
-    alert("Escribe un nombre");
-    return;
-  }
-
-  alert("Sí entró a la función: " + nombre);
-
-  let lista = JSON.parse(localStorage.getItem("asistentes")) || [];
-  lista.push(nombre);
-  localStorage.setItem("asistentes", JSON.stringify(lista));
-
-  console.log("Guardado:", lista);
+  fetch("https://script.google.com/macros/s/AKfycbwKJ3_w6opuVMDFpv2ivGIXn6X0VQd_pUMuNjzOw9pjTK1ivnmVci-YUHH4wZkwFrUn/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: "nombre=" + encodeURIComponent(nombre)
+  });
 
   document.getElementById("escena2").style.display="none";
-  document.getElementById("escena3").style.display="block";
+
+  setTimeout(()=>{
+    document.getElementById("escena3").style.display="block";
+  },500);
 }
 </script>
 
