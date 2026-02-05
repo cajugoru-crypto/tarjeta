@@ -56,6 +56,7 @@ body{
   color:#ff4f9a;
   max-width:800px;
   padding:30px;
+  display:none;
 }
 
 .linea{
@@ -112,11 +113,24 @@ button:hover{transform:scale(1.05)}
   color:#ff4f9a;
   font-family:'Luckiest Guy',cursive;
 }
+
+#botonInicio{
+ font-family:'Luckiest Guy',cursive;
+  padding:20px 40px;
+  font-size:24px;
+  background:linear-gradient(135deg,#ff6fae,#ff9ecf);
+  color:white;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+#botonInicio:hover{transform:scale(1.05)}
 </style>
 </head>
 
 <body>
 
+<!-- EMOJIS FLOTANTES -->
 <div class="float f1">🌺</div>
 <div class="float f2">💙</div>
 <div class="float f3">🌈</div>
@@ -124,8 +138,15 @@ button:hover{transform:scale(1.05)}
 <div class="float f5">💖</div>
 <div class="float f6">✨</div>
 
+<!-- BOTON INICIAL -->
+<div id="inicio">
+  <button id="botonInicio">Haz Clic Tengo Algo Que Contarte 🎶</button>
+</div>
+
+<!-- ESCENA 1 -->
 <div id="escena1"></div>
 
+<!-- ESCENA 2 -->
 <div id="escena2">
   <h4>Lugar : Carrera 14D # 76B 52 Sur</h4>
   <h4>Fecha 14 De Febrero</h4>
@@ -135,9 +156,13 @@ button:hover{transform:scale(1.05)}
   <button onclick="enviar()">Confirmar asistencia</button>
 </div>
 
+<!-- ESCENA 3 -->
 <div id="escena3">
   ¡Nos vemos pronto para jugar, reír y bailar! 🎉💖
 </div>
+
+<!-- AUDIO -->
+<audio id="musica" src="Miprincesa.mp3" loop></audio>
 
 <script>
 const texto = [
@@ -152,22 +177,9 @@ const texto = [
 "¡Te esperamos!"
 ];
 
-const contenedor=document.getElementById("escena1");
-
-texto.forEach((linea,i)=>{
-  const div=document.createElement("div");
-  div.className="linea";
-  div.textContent=linea;
-  div.style.animationDelay=(i*0.8)+"s";
-  contenedor.appendChild(div);
-});
-
-setTimeout(()=>{
-  document.getElementById("escena1").style.display="none";
-  document.getElementById("escena2").style.display="block";
-}, texto.length*800+5000);
-
 const emojis=["💖","🩵","🌺","🌈","💖","🌊","🐬","✨","🎸"];
+
+// CREAR CONFETI
 for(let i=0;i<35;i++){
   let c=document.createElement("div");
   c.className="confeti";
@@ -178,9 +190,38 @@ for(let i=0;i<35;i++){
   document.body.appendChild(c);
 }
 
+// FUNCION INICIAR TARJETA
+document.getElementById("botonInicio").onclick = function(){
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("escena1").style.display = "block";
+
+  const musica = document.getElementById("musica");
+  musica.currentTime = 0;
+  musica.play();
+
+  const contenedor=document.getElementById("escena1");
+  texto.forEach((linea,i)=>{
+    const div=document.createElement("div");
+    div.className="linea";
+    div.textContent=linea;
+    div.style.animationDelay=(i*0.8)+"s";
+    contenedor.appendChild(div);
+  });
+
+  setTimeout(()=>{
+    document.getElementById("escena1").style.display="none";
+    document.getElementById("escena2").style.display="block";
+  }, texto.length*800+5000);
+}
+
+// FUNCION ENVIAR ASISTENCIA
 function enviar(){
   const nombre=document.getElementById("nombre").value.trim();
   if(!nombre)return;
+
+  const musica=document.getElementById("musica");
+  musica.currentTime = 0;
+  musica.play();
 
   fetch("https://script.google.com/macros/s/AKfycbwKJ3_w6opuVMDFpv2ivGIXn6X0VQd_pUMuNjzOw9pjTK1ivnmVci-YUHH4wZkwFrUn/exec", {
     method: "POST",
