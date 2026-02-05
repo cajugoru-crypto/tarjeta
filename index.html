@@ -3,52 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <title>Invitación de Cumpleaños</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: Arial, sans-serif;
-      animation: fadeIn 2s;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      padding: 20px;
     }
 
     .card {
       background: white;
-      padding: 40px;
-      border-radius: 20px;
+      max-width: 420px;
+      width: 100%;
+      padding: 35px;
+      border-radius: 25px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
 
-    h1 {
-      color: #ff4081;
+    h1 { color: #d63384; }
+    p { margin: 6px 0; color: #444; }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 12px;
+      font-size: 16px;
+      box-sizing: border-box;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
+    button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 12px;
+      background: #d63384;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    button:hover {
+      background: #c82377;
     }
   </style>
 </head>
 <body>
+
   <div class="card">
     <h1>🎉 Estás Invitado 🎉</h1>
-    <p>Ven a celebrar mi cumpleaños 🥳</p>
+    <p>Mi cumpleaños 🥳</p>
     <p>📅 15 de marzo</p>
     <p>⏰ 7:00 p.m.</p>
     <p>📍 Mi casa</p>
-    <h3>¡No faltes!</h3>
-    <p>— Oscar</p>
+
+    <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+      <h3>Confirma tu asistencia</h3>
+      <input id="nombre" placeholder="Ingresa tu nombre">
+
+      <button onclick="enviar()">Enviar</button>
+    </div>
   </div>
+
+  <script>
+    function enviar() {
+      const nombre = document.getElementById("nombre").value.trim();
+      if (!nombre) return alert("Por favor ingresa tu nombre 😊");
+
+      fetch("https://script.google.com/macros/s/AKfycbx3o0NTpmpUi2L-PWaTYBZ7YNWdW9pWswhPCnI7UfPznK936w_CwOvHzQcSvY_lqFrZ/exec", {
+        method: "POST",
+        body: JSON.stringify({ nombre }),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(() => {
+        alert("¡Gracias! Tu asistencia fue registrada 🎉");
+        document.getElementById("nombre").value = "";
+      })
+      .catch(() => {
+        alert("Hubo un error al enviar 😥");
+      });
+    }
+  </script>
+
 </body>
+
+<script>
+  function enviar() {
+    const nombre = document.getElementById("nombre").value.trim();
+    if (!nombre) return alert("Por favor ingresa tu nombre 😊");
+
+    const formData = new FormData();
+    formData.append("nombre", nombre);
+                                                
+    fetch("https://script.google.com/macros/s/AKfycbzFf63NN740ec71K7Byl_f-gWs6fLQf1c44AW-fgztHXdBQtzKRNB0DGldbT0xQHxD1/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      alert("¡Gracias! Tu asistencia fue registrada 🎉");
+      document.getElementById("nombre").value = "";
+    })
+    .catch(() => {
+      alert("Hubo un error al enviar 😥");
+    });
+  }
+</script>
 </html>
