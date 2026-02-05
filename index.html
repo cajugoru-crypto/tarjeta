@@ -139,6 +139,35 @@ button:hover{transform:scale(1.05)}
   .confeti{font-size:22px;}
   .float{font-size:36px;}
 }
+
+.map-buttons{
+  display:flex;
+  justify-content:center;
+  gap:4vw;
+  margin:3vw 0;
+}
+
+.map-buttons a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:14vw;
+  max-width:70px;
+  height:14vw;
+  max-height:70px;
+  background:white;
+  border-radius:50%;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+  transition:transform .3s;
+}
+
+.map-buttons a:hover{
+  transform:scale(1.1);
+}
+
+.map-buttons img{
+  width:70%;
+}
 </style>
 </head>
 
@@ -163,7 +192,17 @@ button:hover{transform:scale(1.05)}
 <!-- ESCENA 2 -->
 <div id="escena2">
   <h2>Lugar : Carrera 14D # 76B 52 Sur</h2>
+  <div class="map-buttons">
+  <a href="https://www.google.com/maps/search/?api=1&query=Carrera+14D+76B+52+Sur" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Google_Maps_Logo_2020.svg" alt="Google Maps">
+  </a>
+
+  <a href="https://waze.com/ul?q=Carrera+14D+76B+52+Sur" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Waze_Logo.svg" alt="Waze">
+  </a>
+</div>
   <h2>Fecha 14 De Febrero</h2>
+  <h2>Hora : 3:00 PM</h2>
   <div class="titulo">Confirma tu asistencia 💖</div>
   <input type="text" id="nombre" placeholder="Escribe tu nombre">
   <br>
@@ -176,7 +215,7 @@ button:hover{transform:scale(1.05)}
 </div>
 
 <!-- AUDIO -->
-<audio id="musica" src="Miprincesa.mp3" loop></audio>
+<audio id="musica" src="CUMPLEAÑOS FELIZ (mp3cut.net).mp3" loop></audio>
 
 <script>
 const texto = [
