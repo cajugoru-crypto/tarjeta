@@ -19,6 +19,59 @@ body{
   text-align:center;
   font-family:'Fredoka',sans-serif;
 }
+/* OSITOS DECORATIVOS */
+.osito{
+  position:fixed;
+  width:14vw;
+  max-width:120px;
+  z-index:50;
+  pointer-events:none;
+  animation:flotar 4s ease-in-out infinite;
+}
+/* OCULTAR OSITOS DURANTE ESCENA DE FOTOS */
+#escenaFotos ~ .osito,
+#escenaFotos + .osito {
+  display: none;
+}
+
+/* OCULTAR OSITOS DURANTE ESCENA DE FOTOS */
+#escenaFotos ~ .osito, #escenaFotos + .osito {
+  display:none;
+}
+
+@keyframes flotar{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-10px); }
+}
+
+/* POSICIONES */
+.oso-izq-arriba{ top:4%; left:2%; }
+.oso-izq-abajo{ bottom:4%; left:2%; }
+
+.oso-der-arriba{ top:4%; right:2%; }
+.oso-der-abajo{ bottom:4%; right:2%; }
+
+/* RESPONSIVE */
+@media(min-width:768px){
+  .osito{ max-width:140px; }
+}
+
+/* IZQUIERDA */
+.osito.i1{top:5%; left:1%}
+.osito.i2{top:35%; left:1%}
+.osito.i3{bottom:5%; left:1%}
+
+/* DERECHA */
+.osito.d1{top:5%; right:1%}
+.osito.d2{top:35%; right:1%}
+.osito.d3{bottom:5%; right:1%}
+
+/* RESPONSIVE AJUSTE */
+@media(min-width:768px){
+  .osito{
+    width:120px;
+  }
+}
 /* CAÑÓN DE CONFETI */
 .confetti-layer{
   position:fixed;
@@ -50,24 +103,6 @@ body{
       rotate(540deg);
     opacity:0;
   }
-}
-/* SERPENTINAS */
-#serpentinas{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  overflow:hidden;
-  z-index:999;
-}
-
-.serpentina{
-  position:absolute;
-  top:-10%;
-  width:10px;
-  height:25px;
-  border-radius:4px;
-  opacity:.9;
-  animation:caerSerpentina linear infinite;
 }
 
 @keyframes caerSerpentina{
@@ -241,7 +276,12 @@ button:active{
 
 <body>
 
-  <div id="serpentinas"></div>
+ <!-- OSITOS DECORATIVOS OCULTOS DURANTE ESCENA DE FOTOS -->
+<img src="osito.png" class="osito oso-izq-arriba">
+<img src="osito1.png" class="osito oso-izq-abajo">
+<img src="osito4.png" class="osito oso-der-arriba">
+<img src="osito2.png" class="osito oso-der-abajo">
+
   <div class="confetti-layer" id="confetti"></div>
 
 
@@ -315,13 +355,26 @@ botonInicio.onclick=()=>{
  const tiempoTexto = texto.length * 1200 + 7000;
 
  /* ESCENA FOTOS */
- setTimeout(()=>{
+setTimeout(()=>{
   escena1.style.display="none";
+
+  // OCULTAR OSITOS durante fotos
+  document.querySelectorAll(".osito").forEach(o=>o.style.display="none");
+
   escenaFotos.style.display="block";
   document.querySelectorAll(".foto-caer").forEach((f,i)=>{
     f.style.animationDelay=i*0.8+"s"; // ⏳ FOTOS CAEN MÁS DESPACIO
   });
- }, tiempoTexto);
+}, tiempoTexto);
+
+/* TÍTULO */
+setTimeout(()=>{
+  escenaFotos.style.display="none";
+  escenaTitulo.style.display="block";
+
+  // VOLVER A MOSTRAR OSITOS después de fotos
+  document.querySelectorAll(".osito").forEach(o=>o.style.display="block");
+}, tiempoTexto + 12000);
 
  /* TÍTULO */
  setTimeout(()=>{
@@ -364,19 +417,7 @@ function enviar(){
     window.close();
   },6000);
 }
-/* LLUVIA DE SERPENTINAS */
-const contenedorSerp = document.getElementById("serpentinas");
-const colores = ["#ff4f9a","#ffd166","#6ae3ff","#b388ff","#95ff9a"];
 
-for(let i=0;i<35;i++){
-  const s=document.createElement("div");
-  s.className="serpentina";
-  s.style.left=Math.random()*100+"%";
-  s.style.background=colores[Math.floor(Math.random()*colores.length)];
-  s.style.animationDuration=4+Math.random()*4+"s";
-  s.style.animationDelay=Math.random()*5+"s";
-  contenedorSerp.appendChild(s);
-}
 /* CAÑÓN DE CONFETI ELEGANTE */
 const confetti = document.getElementById("confetti");
 const confettiColores = ["#ff4f9a","#ffd166","#6ae3ff","#b388ff","#95ff9a"];
@@ -391,7 +432,7 @@ function canonConfeti(){
     c.className="confetti-piece";
     c.style.left = baseX + "%";
     c.style.top  = baseY + "%";
-    c.style.background = colores[Math.floor(Math.random()*colores.length)];
+    c.style.background = confettiColores[Math.floor(Math.random()*confettiColores.length)];
     c.style.setProperty("--x",Math.random());
     c.style.setProperty("--y",Math.random());
     confetti.appendChild(c);
