@@ -20,6 +20,7 @@ body{
   font-family:'Fredoka',sans-serif;
 }
 
+/* CONFETI */
 .confeti{
   position:absolute;
   top:-20px;
@@ -32,6 +33,7 @@ body{
   100%{transform:translateY(110vh) rotate(360deg)}
 }
 
+/* EMOJIS FLOTANTES */
 .float{
   position:absolute;
   font-size:8vw;
@@ -50,6 +52,7 @@ body{
   100%{transform:translateY(0)}
 }
 
+/* ESCENAS */
 #escena1{
   font-family:'Luckiest Guy',cursive;
   font-size:4vw;
@@ -79,6 +82,15 @@ body{
   to{transform:translateX(0);opacity:1}
 }
 
+#escena3{
+  display:none;
+  animation:slideIn 1s ease forwards;
+  font-size:6vw;
+  color:#ff4f9a;
+  font-family:'Luckiest Guy',cursive;
+}
+
+/* TITULOS */
 .titulo{
   font-size:6vw;
   color:#ff4f9a;
@@ -86,6 +98,7 @@ body{
   font-family:'Luckiest Guy',cursive;
 }
 
+/* INPUT */
 input{
   padding:3vw;
   width:80%;
@@ -96,50 +109,35 @@ input{
   text-align:center;
 }
 
+/* BOTONES 3D */
 button{
   margin-top:3vw;
   padding:3vw 6vw;
-  background:linear-gradient(135deg,#ff6fae,#ff9ecf);
-  color:white;
-  border:none;
-  border-radius:20px;
-  font-size:4vw;
-  cursor:pointer;
-}
-button:hover{transform:scale(1.05)}
-
-#escena3{
-  display:none;
-  animation:slideIn 1s ease forwards;
-  font-size:6vw;
-  color:#ff4f9a;
-  font-family:'Luckiest Guy',cursive;
-}
-
-#botonInicio{
- font-family:'Luckiest Guy',cursive;
-  padding:4vw 8vw;
-  font-size:5vw;
-  background:linear-gradient(135deg,#ff6fae,#ff9ecf);
+  background:linear-gradient(145deg,#ff8fc4,#ff5fa6);
   color:white;
   border:none;
   border-radius:25px;
+  font-size:4vw;
   cursor:pointer;
+  box-shadow:
+    0 10px 0 #e44b8e,
+    0 18px 25px rgba(0,0,0,.25);
+  transition:all .15s ease;
 }
-#botonInicio:hover{transform:scale(1.05)}
-
-/* Ajustes específicos para pantallas grandes */
-@media(min-width:768px){
-  #escena1{font-size:24px; padding:30px;}
-  .titulo{font-size:30px; margin-bottom:20px;}
-  input{font-size:16px; padding:14px;}
-  button{font-size:17px; padding:14px 30px;}
-  #escena3{font-size:32px;}
-  #botonInicio{font-size:24px; padding:20px 40px;}
-  .confeti{font-size:22px;}
-  .float{font-size:36px;}
+button:active{
+  transform:translateY(8px);
+  box-shadow:
+    0 4px 0 #e44b8e,
+    0 8px 15px rgba(0,0,0,.25);
 }
 
+#botonInicio{
+  font-family:'Luckiest Guy',cursive;
+  padding:4vw 8vw;
+  font-size:5vw;
+}
+
+/* BOTONES MAPA 3D */
 .map-buttons{
   display:flex;
   justify-content:center;
@@ -148,32 +146,49 @@ button:hover{transform:scale(1.05)}
 }
 
 .map-buttons a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
   width:14vw;
   max-width:70px;
   height:14vw;
   max-height:70px;
-  background:white;
+  background:linear-gradient(145deg,#ffffff,#f1f1f1);
   border-radius:50%;
-  box-shadow:0 4px 10px rgba(0,0,0,.15);
-  transition:transform .3s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:
+    0 10px 0 #cfcfcf,
+    0 18px 25px rgba(0,0,0,.25);
+  transition:all .15s ease;
 }
 
-.map-buttons a:hover{
-  transform:scale(1.1);
+.map-buttons a:active{
+  transform:translateY(8px);
+  box-shadow:
+    0 4px 0 #cfcfcf,
+    0 8px 15px rgba(0,0,0,.25);
 }
 
 .map-buttons img{
   width:70%;
+}
+
+/* RESPONSIVE */
+@media(min-width:768px){
+  #escena1{font-size:24px;padding:30px;}
+  .titulo{font-size:30px;}
+  input{font-size:16px;padding:14px;}
+  button{font-size:17px;padding:14px 30px;}
+  #escena3{font-size:32px;}
+  #botonInicio{font-size:24px;padding:20px 40px;}
+  .confeti{font-size:22px;}
+  .float{font-size:36px;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- EMOJIS FLOTANTES -->
+<!-- EMOJIS -->
 <div class="float f1">🌺</div>
 <div class="float f2">💙</div>
 <div class="float f3">🌈</div>
@@ -181,7 +196,7 @@ button:hover{transform:scale(1.05)}
 <div class="float f5">💖</div>
 <div class="float f6">✨</div>
 
-<!-- BOTON INICIAL -->
+<!-- INICIO -->
 <div id="inicio">
   <button id="botonInicio">Haz Clic Tengo Algo Que Contarte 🎶</button>
 </div>
@@ -191,18 +206,20 @@ button:hover{transform:scale(1.05)}
 
 <!-- ESCENA 2 -->
 <div id="escena2">
-  <h2>Lugar : Carrera 14D # 76B 52 Sur</h2>
-  <div class="map-buttons">
-  <a href="https://www.google.com/maps/search/?api=1&query=Carrera+14D+76B+52+Sur" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Google_Maps_Logo_2020.svg" alt="Google Maps">
-  </a>
+  <h2>Lugar: Carrera 14D # 76B 52 Sur</h2>
 
-  <a href="https://waze.com/ul?q=Carrera+14D+76B+52+Sur" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Waze_Logo.svg" alt="Waze">
-  </a>
-</div>
-  <h2>Fecha 14 De Febrero</h2>
-  <h2>Hora : 3:00 PM</h2>
+  <div class="map-buttons">
+    <a href="https://waze.com/ul?q=Dg.+76B+Sur+%231C-40+Usme+Bogotá" target="_blank">
+      <img src="waze.png">
+    </a>
+    <a href="https://www.google.com/maps/search/?api=1&query=Dg.+76B+Sur+%231C-40+Usme+Bogotá" target="_blank">
+      <img src="maps.jpeg">
+    </a>
+  </div>
+
+  <h2>Fecha: 14 de Febrero</h2>
+  <h2>Hora: 3:00 PM</h2>
+
   <div class="titulo">Confirma tu asistencia 💖</div>
   <input type="text" id="nombre" placeholder="Escribe tu nombre">
   <br>
@@ -214,11 +231,10 @@ button:hover{transform:scale(1.05)}
   ¡Nos vemos pronto para jugar, reír y bailar! 🎉💖
 </div>
 
-<!-- AUDIO -->
 <audio id="musica" src="CUMPLEAÑOS FELIZ (mp3cut.net).mp3" loop></audio>
 
 <script>
-const texto = [
+const texto=[
 "😇 Hace un año llegaste para iluminar nuestras vidas.",
 "¡Ven a celebrar el primer añito de nuestra princesa hermosa Emily Antonella!",
 "",
@@ -232,63 +248,40 @@ const texto = [
 
 const emojis=["💖","🩵","🌺","🌈","💖","🌊","🐬","✨","🎸"];
 
-// CREAR CONFETI
 for(let i=0;i<35;i++){
-  let c=document.createElement("div");
-  c.className="confeti";
-  c.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-  c.style.left=Math.random()*100+"vw";
-  c.style.animationDuration=(4+Math.random()*3)+"s";
-  c.style.fontSize=(16+Math.random()*14)+"px";
-  document.body.appendChild(c);
+ let c=document.createElement("div");
+ c.className="confeti";
+ c.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+ c.style.left=Math.random()*100+"vw";
+ c.style.animationDuration=(4+Math.random()*3)+"s";
+ c.style.fontSize=(16+Math.random()*14)+"px";
+ document.body.appendChild(c);
 }
 
-// FUNCION INICIAR TARJETA
-document.getElementById("botonInicio").onclick = function(){
-  document.getElementById("inicio").style.display = "none";
-  document.getElementById("escena1").style.display = "block";
-
-  const musica = document.getElementById("musica");
-  musica.currentTime = 0;
-  musica.play();
-
-  const contenedor=document.getElementById("escena1");
-  texto.forEach((linea,i)=>{
-    const div=document.createElement("div");
-    div.className="linea";
-    div.textContent=linea;
-    div.style.animationDelay=(i*0.8)+"s";
-    contenedor.appendChild(div);
-  });
-
-  setTimeout(()=>{
-    document.getElementById("escena1").style.display="none";
-    document.getElementById("escena2").style.display="block";
-  }, texto.length*800+5000);
+document.getElementById("botonInicio").onclick=()=>{
+ document.getElementById("inicio").style.display="none";
+ document.getElementById("escena1").style.display="block";
+ musica.play();
+ const cont=document.getElementById("escena1");
+ texto.forEach((t,i)=>{
+  let d=document.createElement("div");
+  d.className="linea";
+  d.textContent=t;
+  d.style.animationDelay=(i*0.8)+"s";
+  cont.appendChild(d);
+ });
+ setTimeout(()=>{
+  escena1.style.display="none";
+  escena2.style.display="block";
+ },texto.length*800+5000);
 }
 
-// FUNCION ENVIAR ASISTENCIA
 function enviar(){
-  const nombre=document.getElementById("nombre").value.trim();
-  if(!nombre)return;
-
-  const musica=document.getElementById("musica");
-  musica.currentTime = 0;
-  musica.play();
-
-  fetch("https://script.google.com/macros/s/AKfycbwKJ3_w6opuVMDFpv2ivGIXn6X0VQd_pUMuNjzOw9pjTK1ivnmVci-YUHH4wZkwFrUn/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body: "nombre=" + encodeURIComponent(nombre)
-  });
-
-  document.getElementById("escena2").style.display="none";
-
-  setTimeout(()=>{
-    document.getElementById("escena3").style.display="block";
-  },500);
+ const n=nombre.value.trim();
+ if(!n)return;
+ fetch("https://script.google.com/macros/s/AKfycbwKJ3_w6opuVMDFpv2ivGIXn6X0VQd_pUMuNjzOw9pjTK1ivnmVci-YUHH4wZkwFrUn/exec",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"nombre="+encodeURIComponent(n)});
+ escena2.style.display="none";
+ setTimeout(()=>escena3.style.display="block",500);
 }
 </script>
 
