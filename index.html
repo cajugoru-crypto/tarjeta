@@ -50,13 +50,13 @@ body{
 
 .foto-caer{
   position:absolute;
-  width:22vw;
-  max-width:140px;
+  width:26vw;          /* ⬆️ más grande en celular */
+  max-width:170px;     /* ⬆️ más grande en pantallas grandes */
   aspect-ratio:1/1;
   object-fit:contain;
-  background:linear-gradient(135deg,#ffe6f2,#e6f6ff); /* 👈 ESTA */
-  border-radius:20px;
-  box-shadow:0 15px 30px rgba(0,0,0,.25);
+  background:linear-gradient(135deg,#ffe6f2,#e6f6ff);
+  border-radius:22px;
+  box-shadow:0 18px 35px rgba(0,0,0,.28);
   opacity:0;
   animation:caerFoto 1s ease forwards;
 }
@@ -208,7 +208,7 @@ button:active{
 <div id="escenaTitulo">Mi Primer Añito 🎉</div>
 
 <div id="escena2">
-  <h2>Lugar: Dg. 76B Sur #1C-40, Usme, Bogotá</h2>
+  <h2>Lugar: Carrera 14 D # 76B 52 Sur</h2>
   <div class="map-buttons">
     <a href="https://waze.com/ul?q=Dg.+76B+Sur+%231C-40+Usme+Bogotá" target="_blank"><img src="waze.png"></a>
     <a href="https://www.google.com/maps/search/?api=1&query=Dg.+76B+Sur+%231C-40+Usme+Bogotá" target="_blank"><img src="maps.jpeg"></a>
@@ -216,26 +216,26 @@ button:active{
   <h2>Fecha: 14 de Febrero</h2>
   <h2>Hora: 3:00 PM</h2>
   <div class="titulo">Confirma tu asistencia 💖</div>
-  <input id="nombre" placeholder="Escribe tu nombre">
+  <input id="nombre" placeholder="Tu nombre">
   <br>
   <button onclick="enviar()">Confirmar asistencia</button>
 </div>
 
-<div id="escena3">¡Nos vemos pronto para jugar, reír y bailar! 🎉💖</div>
-
+<div id="escena3">¡Nos vemos pronto para jugar, reír y bailar! 🎉
 <audio id="musica" src="CUMPLEAÑOS FELIZ (mp3cut.net).mp3" loop></audio>
 
 <script>
 const texto=[
-"😇 Hace un año llegaste para iluminar nuestras vidas.",
-"¡Ven a celebrar el primer añito de nuestra princesa hermosa Emily Antonella!",
+"😇 Hace un año Dios nos regaló el milagro más hermoso.💖 😇",
+"¡Nuetra pequeña Emily Antonella llegó para llenar nuiestros días de luz, ternura y felicidad!",
+"",💖</div>
+
+"💖 ¡Hoy celebremos su primer añito.!",
+"365 días de amor infinito, abrazos sinceros y momentos que guardamos en el corazón",
 "",
-"💖 365 días de amor, risas y mimos.",
-"¡Nuestra pequeña cumple 1 año!",
-"",
-"🙏 Con la bendición de Dios,",
-"celebramos el primer año de vida de nuestra Antonella.",
-"¡Te esperamos!"
+"🙏 Queremos que seas parte de esta alegría tan grande,",
+"Ven a celebrar con nosotros el primer cumpleaños de nuestra princesa.",
+"¡Te esperamos con los brazos abiertos!💖💖"
 ];
 
 botonInicio.onclick=()=>{
