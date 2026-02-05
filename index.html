@@ -19,6 +19,62 @@ body{
   text-align:center;
   font-family:'Fredoka',sans-serif;
 }
+/* CAÑÓN DE CONFETI */
+.confetti-layer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+}
+
+.confetti-piece{
+  position:absolute;
+  width:6px;
+  height:14px;
+  border-radius:2px;
+  opacity:0;
+  animation:confetiCanon 2.8s ease-out forwards;
+}
+
+@keyframes confetiCanon{
+  0%{
+    transform:translate(0,0) rotate(0deg);
+    opacity:1;
+  }
+  100%{
+    transform:
+      translate(
+        calc(-120px + 240px * var(--x)),
+        calc(-200px * var(--y))
+      )
+      rotate(540deg);
+    opacity:0;
+  }
+}
+/* SERPENTINAS */
+#serpentinas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:999;
+}
+
+.serpentina{
+  position:absolute;
+  top:-10%;
+  width:10px;
+  height:25px;
+  border-radius:4px;
+  opacity:.9;
+  animation:caerSerpentina linear infinite;
+}
+
+@keyframes caerSerpentina{
+  to{
+    transform:translateY(120vh) rotate(360deg);
+  }
+}
 
 /* ESCENAS */
 #escena1{
@@ -185,6 +241,10 @@ button:active{
 
 <body>
 
+  <div id="serpentinas"></div>
+  <div class="confetti-layer" id="confetti"></div>
+
+
 <div id="inicio">
   <button id="botonInicio">Haz Clic Tengo Algo Que Contarte 🎶</button>
 </div>
@@ -225,6 +285,7 @@ button:active{
 <audio id="musica" src="CUMPLEAÑOS FELIZ (mp3cut.net).mp3" loop></audio>
 
 <script>
+ let yaConfirmo = false;
 const texto=[
 "😇 Hace un año Dios nos regaló el milagro más hermoso.💖 😇",
 "¡Nuetra pequeña Emily Antonella llegó para llenar nuiestros días de luz, ternura y felicidad!",
@@ -276,20 +337,70 @@ botonInicio.onclick=()=>{
 }
 
 function enviar(){
- if(!nombre.value.trim())return;
+  if(yaConfirmo) return;              // 🚫 evita doble confirmación
+  if(!nombre.value.trim()) return;
 
- fetch(
-  "https://script.google.com/macros/s/AKfycbwKJ3_w6opuVMDFpv2ivGIXn6X0VQd_pUMuNjzOw9pjTK1ivnmVci-YUHH4wZkwFrUn/exec",
-  {
-    method:"POST",
-    headers:{"Content-Type":"application/x-www-form-urlencoded"},
-    body:"nombre="+encodeURIComponent(nombre.value)
-  }
- );
+  yaConfirmo = true;                  // 🔒 bloquea nuevos envíos
 
- escena2.style.display="none";
- setTimeout(()=>escena3.style.display="block",500);
+  fetch(
+    "https://script.google.com/macros/s/AKfycbwKJ3_w6opuVMDFpv2ivGIXn6X0VQd_pUMuNjzOw9pjTK1ivnmVci-YUHH4wZkwFrUn/exec",
+    {
+      method:"POST",
+      headers:{"Content-Type":"application/x-www-form-urlencoded"},
+      body:"nombre="+encodeURIComponent(nombre.value)
+    }
+  );
+
+  // Desactivar botón
+  document.querySelector("#escena2 button").disabled = true;
+  document.querySelector("#escena2 button").textContent = "Gracias 💖";
+
+  // Mostrar mensaje final
+  escena2.style.display="none";
+  escena3.style.display="block";
+
+  // ⏳ Cerrar después de 6 segundos
+  setTimeout(()=>{
+    window.close();
+  },6000);
 }
+/* LLUVIA DE SERPENTINAS */
+const contenedorSerp = document.getElementById("serpentinas");
+const colores = ["#ff4f9a","#ffd166","#6ae3ff","#b388ff","#95ff9a"];
+
+for(let i=0;i<35;i++){
+  const s=document.createElement("div");
+  s.className="serpentina";
+  s.style.left=Math.random()*100+"%";
+  s.style.background=colores[Math.floor(Math.random()*colores.length)];
+  s.style.animationDuration=4+Math.random()*4+"s";
+  s.style.animationDelay=Math.random()*5+"s";
+  contenedorSerp.appendChild(s);
+}
+/* CAÑÓN DE CONFETI ELEGANTE */
+const confetti = document.getElementById("confetti");
+const confettiColores = ["#ff4f9a","#ffd166","#6ae3ff","#b388ff","#95ff9a"];
+
+
+function canonConfeti(){
+  const baseX = Math.random()*70 + 15; // centro bonito
+  const baseY = Math.random()*60 + 30;
+
+  for(let i=0;i<26;i++){
+    const c = document.createElement("div");
+    c.className="confetti-piece";
+    c.style.left = baseX + "%";
+    c.style.top  = baseY + "%";
+    c.style.background = colores[Math.floor(Math.random()*colores.length)];
+    c.style.setProperty("--x",Math.random());
+    c.style.setProperty("--y",Math.random());
+    confetti.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+}
+
+/* DISPARA CADA CIERTOS SEGUNDOS */
+setInterval(canonConfeti,3500);
 </script>
 
 </body>
