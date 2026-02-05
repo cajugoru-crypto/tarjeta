@@ -185,18 +185,23 @@ for(let i=0;i<35;i++){
 }
 
 function enviar(){
-  const nombre=document.getElementById("nombre").value.trim();
-  if(!nombre)return;
+  const nombre = document.getElementById("nombre").value.trim();
 
-  let lista=JSON.parse(localStorage.getItem("asistentes"))||[];
+  if(!nombre){
+    alert("Escribe un nombre");
+    return;
+  }
+
+  alert("Sí entró a la función: " + nombre);
+
+  let lista = JSON.parse(localStorage.getItem("asistentes")) || [];
   lista.push(nombre);
-  localStorage.setItem("asistentes",JSON.stringify(lista));
+  localStorage.setItem("asistentes", JSON.stringify(lista));
+
+  console.log("Guardado:", lista);
 
   document.getElementById("escena2").style.display="none";
-
-  setTimeout(()=>{
-    document.getElementById("escena3").style.display="block";
-  },500);
+  document.getElementById("escena3").style.display="block";
 }
 </script>
 
