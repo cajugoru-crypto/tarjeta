@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Mi Primer Añito</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 
@@ -22,7 +23,7 @@ body{
 .confeti{
   position:absolute;
   top:-20px;
-  font-size:22px;
+  font-size:5vw;
   animation:caerConfeti linear infinite;
   opacity:.9;
 }
@@ -33,7 +34,7 @@ body{
 
 .float{
   position:absolute;
-  font-size:36px;
+  font-size:8vw;
   animation:float 6s ease-in-out infinite;
 }
 .f1{left:5%;top:20%}
@@ -45,25 +46,25 @@ body{
 
 @keyframes float{
   0%{transform:translateY(0)}
-  50%{transform:translateY(-25px)}
+  50%{transform:translateY(-3vw)}
   100%{transform:translateY(0)}
 }
 
 #escena1{
   font-family:'Luckiest Guy',cursive;
-  font-size:24px;
-  line-height:1.8;
+  font-size:4vw;
+  line-height:1.5;
   color:#ff4f9a;
-  max-width:800px;
-  padding:30px;
+  max-width:90vw;
+  padding:5vw;
   display:none;
 }
 
 .linea{
   opacity:0;
-  transform:translateY(-50px);
+  transform:translateY(-3vw);
   animation:caerLinea 1s forwards;
-  margin-bottom:14px;
+  margin-bottom:1.5vw;
 }
 @keyframes caerLinea{
   to{opacity:1;transform:translateY(0);}
@@ -79,29 +80,30 @@ body{
 }
 
 .titulo{
-  font-size:30px;
+  font-size:6vw;
   color:#ff4f9a;
-  margin-bottom:20px;
+  margin-bottom:3vw;
   font-family:'Luckiest Guy',cursive;
 }
 
 input{
-  padding:14px;
-  width:280px;
+  padding:3vw;
+  width:80%;
+  max-width:280px;
   border-radius:20px;
   border:2px solid #ff9ecf;
-  font-size:16px;
+  font-size:4vw;
   text-align:center;
 }
 
 button{
-  margin-top:15px;
-  padding:14px 30px;
+  margin-top:3vw;
+  padding:3vw 6vw;
   background:linear-gradient(135deg,#ff6fae,#ff9ecf);
   color:white;
   border:none;
   border-radius:20px;
-  font-size:17px;
+  font-size:4vw;
   cursor:pointer;
 }
 button:hover{transform:scale(1.05)}
@@ -109,15 +111,15 @@ button:hover{transform:scale(1.05)}
 #escena3{
   display:none;
   animation:slideIn 1s ease forwards;
-  font-size:32px;
+  font-size:6vw;
   color:#ff4f9a;
   font-family:'Luckiest Guy',cursive;
 }
 
 #botonInicio{
  font-family:'Luckiest Guy',cursive;
-  padding:20px 40px;
-  font-size:24px;
+  padding:4vw 8vw;
+  font-size:5vw;
   background:linear-gradient(135deg,#ff6fae,#ff9ecf);
   color:white;
   border:none;
@@ -125,6 +127,18 @@ button:hover{transform:scale(1.05)}
   cursor:pointer;
 }
 #botonInicio:hover{transform:scale(1.05)}
+
+/* Ajustes específicos para pantallas grandes */
+@media(min-width:768px){
+  #escena1{font-size:24px; padding:30px;}
+  .titulo{font-size:30px; margin-bottom:20px;}
+  input{font-size:16px; padding:14px;}
+  button{font-size:17px; padding:14px 30px;}
+  #escena3{font-size:32px;}
+  #botonInicio{font-size:24px; padding:20px 40px;}
+  .confeti{font-size:22px;}
+  .float{font-size:36px;}
+}
 </style>
 </head>
 
